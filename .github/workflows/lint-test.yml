@@ -1,0 +1,34 @@
+name: Lint, Unit Test, and E2E Test
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      # Jest Unit Tests
+      - name: Run Jest Unit Tests
+        run: npm run test -- --coverage
+
+      # Cypress E2E Tests
+      - name: Run Cypress E2E Tests
+        uses: cypress-io/github-action@v4
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000' # Adjust based on your app
+          browser: chrome

@@ -1,0 +1,16 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "color-no-invalid-hex": true,
+        "block-no-empty": true,
+        "unit-whitelist": [
+            "em",
+            "rem",
+            "%",
+            "s",
+            "px"
+        ],
+        "declaration-block-no-duplicate-properties": true,
+        "selector-max-id": 0
+    }
+}
